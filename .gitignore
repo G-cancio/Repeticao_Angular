@@ -1,0 +1,7 @@
+**/node_modules
+**/dist
+**/.angular
+**/.env
+# api/data2.db
+.DS_Store
+Thumbs.db
