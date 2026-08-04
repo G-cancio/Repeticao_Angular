@@ -1,0 +1,21 @@
+.fundo-home {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: #f8f9fa;
+}
+
+.topo {
+  z-index: 10;
+}
+
+.card-boas-vindas {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-header-custom span {
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
