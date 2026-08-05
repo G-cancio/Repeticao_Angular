@@ -11,6 +11,21 @@ import { Router } from '@angular/router';
 export class Home {
   private router = inject(Router);
 
+  toggleSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    if (sidebar) {
+      sidebar.classList.toggle('fechada');
+    }
+  }
+
+  irParaHome() {
+    this.router.navigate(['/home']);
+  }
+
+  irParaDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
+
   logout() {
     localStorage.removeItem('usuarioLogado');
     sessionStorage.removeItem('usuarioLogado');
