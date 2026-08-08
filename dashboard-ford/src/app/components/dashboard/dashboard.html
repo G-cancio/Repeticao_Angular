@@ -1,8 +1,63 @@
-<div class="p-5 text-center">
-  <h3 class="fw-bold text-primary mb-3">Dashboard Ford</h3>
-  <p class="text-muted">...</p>
+<div class="fundo-dashboard">
 
-  <a (click)="irParaHome()" class="btn btn-outline-secondary btn-sm mt-2 cursor-pointer">
-    Voltar para Home
-  </a>
+  <div class="sidebar bg-light border-end d-flex flex-column" id="sidebarMenu">
+    <div class="p-3 border-bottom text-center bg-white">
+      <img src="ford.png" alt="Ford Logo" style="max-height: 40px;">
+    </div>
+    <div class="list-group list-group-flush flex-grow-1">
+      <a (click)="irParaHome()" class="list-group-item list-group-item-action py-3 px-4 fw-semibold border-0 cursor-pointer">
+        <i class="bi bi-house-door-fill me-2"></i> Home
+      </a>
+      <a (click)="irParaDashboard()" class="list-group-item list-group-item-action active-custom py-3 px-4 fw-semibold border-0 cursor-pointer">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+      </a>
+    </div>
+    <div class="p-3 border-top bg-white">
+      <button (click)="logout()" class="btn btn-outline-danger w-100 fw-semibold btn-sm">
+        <i class="bi bi-box-arrow-right me-1"></i> Sair
+      </button>
+    </div>
+  </div>
+
+  <div class="view-container-dashboard position-relative">
+
+    <div class="w-100 mb-3">
+      <button class="btn btn-light shadow-sm toggle-btn border" (click)="toggleSidebar()">
+        <i class="bi bi-list fs-4"></i>
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm border border-light w-100">
+      <h2 class="text-primary fw-bold m-0 fs-4">Dashboard FORD</h2>
+
+      <div class="d-flex align-items-center gap-2">
+        <label class="fw-bold text-secondary m-0 small">Selecione o Veículo:</label>
+        <select class="form-select form-select-sm w-auto" [(ngModel)]="veiculoSelecionado" (change)="onVeiculoChange()">
+          <option *ngFor="let v of veiculos" [ngValue]="v">{{ v.vehicle }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4 w-100 m-0" *ngIf="veiculoSelecionado">
+      <div class="col-md-4">
+        <div class="card p-3 shadow-sm border-0 border-start border-primary border-4 bg-white card-painel w-100">
+          <span class="text-muted text-uppercase bg-transparent small fw-bold">Total de Vendas</span>
+          <h3 class="text-primary fw-bold my-1 fs-4">{{ veiculoSelecionado?.volumetotal | number }}</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow-sm border-0 border-start border-success border-4 bg-white card-painel w-100">
+          <span class="text-muted text-uppercase bg-transparent small fw-bold">Conectados</span>
+          <h3 class="text-success fw-bold my-1 fs-4">{{ veiculoSelecionado?.connected | number }}</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow-sm border-0 border-start border-warning border-4 bg-white card-painel w-100">
+          <span class="text-muted text-uppercase bg-transparent small fw-bold">Atualizações de Software</span>
+          <h3 class="text-warning fw-bold my-1 fs-4">{{ veiculoSelecionado?.softwareUpdates | number }}</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
