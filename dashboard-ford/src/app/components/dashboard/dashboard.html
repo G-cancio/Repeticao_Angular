@@ -59,5 +59,9 @@
       </div>
     </div>
 
+    <div class="card p-3 shadow-sm border border-light bg-white card-painel mb-4 w-100 d-flex justify-content-center align-items-center" *ngIf="veiculoSelecionado">
+      <img [src]="getFotoVeiculo(veiculoSelecionado?.vehicle)" [alt]="veiculoSelecionado?.vehicle" class="img-fluid img-carro-painel">
+    </div>
+
   </div>
 </div>
