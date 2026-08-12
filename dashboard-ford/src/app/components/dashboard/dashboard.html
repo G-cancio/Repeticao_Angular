@@ -63,5 +63,50 @@
       <img [src]="getFotoVeiculo(veiculoSelecionado?.vehicle)" [alt]="veiculoSelecionado?.vehicle" class="img-fluid img-carro-painel">
     </div>
 
+    <div class="card p-4 shadow-sm border border-light bg-white card-painel mb-4 w-100">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <h4 class="fw-bold text-secondary m-0 fs-5">Registros de Fábrica</h4>
+        <input
+          type="text"
+          class="form-control form-control-sm w-auto"
+          placeholder="Buscar por código do veículo (VIN)..."
+          [(ngModel)]="codigoBusca"
+          (input)="onCodigoBuscaInput()">
+      </div>
+
+      <div class="table-responsive w-100">
+        <table class="table table-striped table-hover align-middle m-0" style="table-layout: fixed; min-width: 850px; width: 100%;">
+          <thead class="table-dark">
+            <tr>
+              <th style="width: 32%;">Código - Vin</th>
+              <th style="width: 15%;">Odômetro</th>
+              <th style="width: 18%;">Nível de Combustível</th>
+              <th style="width: 15%;">Status</th>
+              <th style="width: 10%;">Lat.</th>
+              <th style="width: 10%;">Long.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let reg of registrosFiltrados">
+              <td class="fw-bold text-primary text-truncate small">{{ reg.vin }}</td>
+              <td class="small">{{ reg.odometer | number }} Km</td>
+              <td class="small">{{ reg.fuelLevel }}%</td>
+              <td>
+                <span class="badge btn-sm px-2 py-1" [ngClass]="reg.status === 'on' ? 'bg-success' : 'bg-danger'">
+                  {{ reg.status | uppercase }}
+                </span>
+              </td>
+              <td class="small text-muted">{{ reg.lat }}</td>
+              <td class="small text-muted">{{ reg.long }}</td>
+            </tr>
+
+            <tr *ngIf="registrosFiltrados.length === 0">
+              <td colspan="6" class="text-center text-muted py-3 small">Nenhum registro encontrado para este veículo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>

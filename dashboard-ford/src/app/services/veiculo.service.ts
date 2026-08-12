@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { VeiculosAPI } from '../models/veiculo.model';
+import { VeiculosAPI, VeiculoDado } from '../models/veiculo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,13 @@ import { VeiculosAPI } from '../models/veiculo.model';
 export class VeiculoService {
   private http = inject(HttpClient);
   private urlVehicle = 'http://localhost:3000/vehicle';
+  private urlVehicleData = 'http://localhost:3000/vehicleData';
 
   getVehicles(): Observable<VeiculosAPI> {
     return this.http.get<VeiculosAPI>(this.urlVehicle);
+  }
+
+  getVehicleData(): Observable<VeiculoDado[]> {
+    return this.http.get<VeiculoDado[]>(this.urlVehicleData);
   }
 }
